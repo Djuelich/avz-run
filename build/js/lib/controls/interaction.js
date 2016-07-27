@@ -132,9 +132,11 @@ function pickUpItem() {
 
 function destroy(){
     if(this.type == TYPE_INTERACTABLE && selectedItem.name == newItemList[0]){
-
+        var destroySound = createSound("door-crack",50,5,false,3,function () {
+            destroySound.play();
+        });
         this.delFromScene();
-        console.log('destroyed');
+        console.log('destroyed')
         player.delActItem();
     }
     else{
@@ -161,7 +163,7 @@ function damage_door() {
         damaged_y = this.mesh.position.y;
         damaged_z = this.mesh.position.z;
         var damaged_door = ['tuer_halbkaputt.json'];
-        var crashing = createSound("crashing_door",50,5,false,3,function () {
+        var crashing = createSound("door-crack",50,5,false,3,function () {
             crashing.play();
         });
         addItem(pathItem.concat(damaged_door[0]), damaged_x, damaged_y, damaged_z, 1, true, destroy_door);
@@ -179,7 +181,7 @@ function destroy_door() {
         damaged_y = this.mesh.position.y;
         damaged_z = this.mesh.position.z;
         var destroyed_door = ['tuer_kaputt.json'];
-        var crashing = createSound("crashing_door",50,5,false,3,function () {
+        var crashing = createSound("door-crack",50,5,false,3,function () {
             crashing.play();
         });
         addItem(pathItem.concat(destroyed_door[0]), damaged_x, damaged_y, damaged_z, 1, false, 0);
@@ -194,10 +196,16 @@ function destroy_door() {
 function openLockedDoor() {
 	if(lockOpen){
 		if(!this.open) {
+            var opening = createSound("door-open",50,5,false,3,function () {
+            opening.play();
+        });
 	        this.mesh.rotateY(Math.PI/2.0);
 	        this.open = !this.open;
 	    }
 	    else {
+            var opening = createSound("door-open",50,5,false,3,function () {
+            opening.play();
+        });
 	        this.mesh.rotateY(-Math.PI/2.0);
 	        this.open = !this.open;
 	    }
@@ -208,6 +216,9 @@ function openLockedDoor() {
 
 function extinguish() {
 	if(this.type == TYPE_FIRE && selectedItem.name == newItemList[12]){
+        var extinguisherSound = createSound("extinguisher",50,5,false,3,function () {
+            extinguisherSound.play();
+        });
     	delFire(this);
     	console.log('extinguished');
     	player.delActItem();
@@ -242,6 +253,9 @@ function activateTransponder(){
 function openTransponderDoor(){
     if(selectedItem.activeTransponder){
         if(!this.open) {
+            var transponderOpeningSound = createSound("correct",50,5,false,3,function () {
+            transponderOpeningSound.play();
+        });orrect
             this.mesh.rotateY(Math.PI/2.0);
             this.open = !this.open;
         }
