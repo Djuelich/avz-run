@@ -46,8 +46,14 @@ function createBasicSounds() {
     atmosphere = createSound("atmosphere", 10, 0.1, true, 1, function(){
         atmosphere.play();
     });
+<<<<<<< HEAD
     camera.add(footsteps);
     camera.add(atmosphere);
+=======
+    camera.add(atmosphere);
+    camera.add(footsteps);
+
+>>>>>>> b22d8649c731d2a993a40ce11bc54bbaea5cc2d3
 }
 
 
